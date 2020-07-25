@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace Server.Controllers
 {
-    public class AdminController : ApiController
+    public class CommentController : ApiController
     {
         private steptocharityEntities context = new steptocharityEntities();
 
@@ -17,14 +17,14 @@ namespace Server.Controllers
         public IHttpActionResult Get(bool related = false)
         {
 
-            List<admin> query = context.admins.ToList();
+            List<comment> query = context.comments.ToList();
             return Ok(new { results = query });
         }
 
-        public IHttpActionResult post([FromBody] admin adata)
+        public IHttpActionResult post([FromBody] comment adata)
         {
-            admin p = adata;
-            context.admins.Add(p);
+            comment p = adata;
+            context.comments.Add(p);
             context.SaveChanges();
 
             return Ok(new { results = adata });
@@ -33,7 +33,7 @@ namespace Server.Controllers
 
         public IHttpActionResult Get(int id)
         {
-            admin a = context.admins.Single(admin => admin.admin_id == id);
+            comment a = context.comments.Single(comment=> comment.comment_id == id);
 
             return Ok(new { results = a });
 
@@ -75,23 +75,10 @@ namespace Server.Controllers
         //}
 
 
-        public IHttpActionResult Put(int id, [FromBody] admin s)
+        public IHttpActionResult Put(int id, [FromBody] comment s)
         {
-            admin a = context.admins.Single(admin => admin.admin_id == s.admin_id);
-            a.admin_name = s.admin_name;
-            a.email = s.email;
-            a.password = s.password;
-            a.contact_no = s.contact_no;
-            a.CNIC = s.CNIC;
-            a.DOB = s.DOB;
-            a.country = s.country;
-            a.city = s.city;
-            a.state = s.state;
-            a.address = s.address;
-            a.gender = s.gender;
-          
-
-            //context.Update(s);
+            comment a = context.comments.Single(comment => comment.comment_id== s.comment_id);
+            a.comment_text = s.comment_text;
             context.SaveChanges();
             return Ok();
 
@@ -99,8 +86,8 @@ namespace Server.Controllers
 
         public void delete(int id)
         {
-            var result = context.admins.Single(admin => admin.admin_id == id);
-            context.admins.Remove(result);
+            var result = context.comments.Single(comment=> comment.comment_id == id);
+            context.comments.Remove(result);
             context.SaveChanges();
         }
 

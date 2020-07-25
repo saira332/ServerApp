@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a28455e74c6749cda264fc0602b2dcd9" Name="Diagram1">
+        <EntityTypeShape EntityType="steptocharityModel.accepter" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="steptocharityModel.admin" Width="1.5" PointX="8.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="steptocharityModel.comment" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="steptocharityModel.docupload" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="steptocharityModel.donation" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="steptocharityModel.donor" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="steptocharityModel.imageupload" Width="1.5" PointX="8.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="steptocharityModel.login" Width="1.5" PointX="8.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="steptocharityModel.notification" Width="1.5" PointX="10.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="steptocharityModel.post" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="steptocharityModel.comment_accepter_comment_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="steptocharityModel.docupload_accepter_doc_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="steptocharityModel.donation_accepter_id_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="steptocharityModel.post_accepter_post_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="steptocharityModel.comment_donor_comment_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="steptocharityModel.comment_post_id_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="steptocharityModel.docupload_donor_doc_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="steptocharityModel.donation_donor_id_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="steptocharityModel.donation_post_id_mfk" ManuallyRouted="false" />
+        <AssociationConnector Association="steptocharityModel.post_donor_post_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="steptocharityModel.imageupload_post_image_fk" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

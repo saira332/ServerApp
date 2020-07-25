@@ -1,0 +1,907 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="steptocharityModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="accepter">
+          <Key>
+            <PropertyRef Name="accepter_id" />
+          </Key>
+          <Property Name="accepter_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="accepter_name" Type="nvarchar" MaxLength="45" />
+          <Property Name="father_name" Type="nvarchar" MaxLength="45" />
+          <Property Name="email" Type="nvarchar" MaxLength="45" />
+          <Property Name="password" Type="nvarchar" MaxLength="45" />
+          <Property Name="contact_no" Type="nvarchar" MaxLength="45" />
+          <Property Name="CNIC" Type="nvarchar" MaxLength="60" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="country" Type="nvarchar" MaxLength="45" />
+          <Property Name="city" Type="nvarchar" MaxLength="45" />
+          <Property Name="state" Type="nvarchar" MaxLength="45" />
+          <Property Name="address" Type="nvarchar" MaxLength="100" />
+          <Property Name="zip_code" Type="nvarchar" MaxLength="45" />
+          <Property Name="gender" Type="nvarchar" MaxLength="45" />
+          <Property Name="occupation" Type="nvarchar" MaxLength="45" />
+          <Property Name="family_members" Type="int" />
+          <Property Name="marital_status" Type="nvarchar" MaxLength="45" />
+          <Property Name="salary" Type="int" />
+          <Property Name="code" Type="int" />
+          <Property Name="status" Type="nvarchar" MaxLength="45" />
+          <Property Name="admin_id" Type="int" />
+        </EntityType>
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="admin_id" />
+          </Key>
+          <Property Name="admin_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="admin_name" Type="nvarchar" MaxLength="45" />
+          <Property Name="email" Type="nvarchar" MaxLength="45" />
+          <Property Name="password" Type="nvarchar" MaxLength="45" />
+          <Property Name="contact_no" Type="int" />
+          <Property Name="gender" Type="nvarchar" MaxLength="45" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="CNIC" Type="nvarchar" MaxLength="60" />
+          <Property Name="country" Type="nvarchar" MaxLength="45" />
+          <Property Name="city" Type="nvarchar" MaxLength="45" />
+          <Property Name="state" Type="nvarchar" MaxLength="45" />
+          <Property Name="address" Type="nvarchar" MaxLength="45" />
+          <Property Name="code" Type="int" />
+          <Property Name="status" Type="nvarchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="comment_id" />
+          </Key>
+          <Property Name="comment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="post_id" Type="int" />
+          <Property Name="accepter_id" Type="int" />
+          <Property Name="comment_text" Type="nvarchar" MaxLength="200" />
+          <Property Name="time" Type="datetime2" Precision="0" />
+          <Property Name="donor_id" Type="int" />
+        </EntityType>
+        <EntityType Name="docupload">
+          <Key>
+            <PropertyRef Name="doc_id" />
+          </Key>
+          <Property Name="doc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="accepter_id" Type="int" />
+          <Property Name="donor_id" Type="int" />
+          <Property Name="doc_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="path" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="donation">
+          <Key>
+            <PropertyRef Name="donation_id" />
+          </Key>
+          <Property Name="donation_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="donor_id" Type="int" />
+          <Property Name="accepter_id" Type="int" />
+          <Property Name="time" Type="datetime2" Precision="0" />
+          <Property Name="donation_type" Type="nvarchar" MaxLength="45" />
+          <Property Name="description" Type="nvarchar" MaxLength="100" />
+          <Property Name="post_id" Type="int" />
+          <Property Name="amount" Type="int" />
+        </EntityType>
+        <EntityType Name="donor">
+          <Key>
+            <PropertyRef Name="donor_id" />
+          </Key>
+          <Property Name="donor_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="donor_name" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="45" />
+          <Property Name="contact_no" Type="int" />
+          <Property Name="CNIC" Type="nvarchar" MaxLength="60" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="country" Type="nvarchar" MaxLength="45" />
+          <Property Name="city" Type="nvarchar" MaxLength="45" />
+          <Property Name="state" Type="nvarchar" MaxLength="45" />
+          <Property Name="address" Type="nvarchar" MaxLength="100" />
+          <Property Name="zip_code" Type="nvarchar" MaxLength="45" />
+          <Property Name="gender" Type="nvarchar" MaxLength="45" />
+          <Property Name="occupation" Type="nvarchar" MaxLength="45" />
+          <Property Name="code" Type="int" />
+          <Property Name="status" Type="nvarchar" MaxLength="45" />
+          <Property Name="admin_id" Type="int" />
+        </EntityType>
+        <EntityType Name="imageupload">
+          <Key>
+            <PropertyRef Name="image_id" />
+          </Key>
+          <Property Name="image_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="image_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="post_id" Type="int" />
+          <Property Name="path" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="login">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="45" />
+          <Property Name="password" Type="nvarchar" MaxLength="45" />
+          <Property Name="type" Type="nvarchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="notification">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="100" />
+          <Property Name="type" Type="nvarchar" MaxLength="45" />
+          <Property Name="status" Type="nvarchar" MaxLength="45" />
+          <Property Name="admin_id" Type="int" />
+          <Property Name="accepter_id" Type="int" />
+          <Property Name="donor_id" Type="int" />
+        </EntityType>
+        <EntityType Name="post">
+          <Key>
+            <PropertyRef Name="post_id" />
+          </Key>
+          <Property Name="post_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="45" />
+          <Property Name="category" Type="nvarchar" MaxLength="45" />
+          <Property Name="description" Type="nvarchar" MaxLength="200" />
+          <Property Name="target_amount" Type="int" />
+          <Property Name="received_amount" Type="int" />
+          <Property Name="time" Type="datetime2" Precision="0" />
+          <Property Name="shares" Type="int" />
+          <Property Name="urgent" Type="nvarchar" MaxLength="45" />
+          <Property Name="accepter_id" Type="int" />
+          <Property Name="donor_id" Type="int" />
+        </EntityType>
+        <Association Name="comment$accepter_comment_fk">
+          <End Role="accepter" Type="Self.accepter" Multiplicity="0..1" />
+          <End Role="comment" Type="Self.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accepter">
+              <PropertyRef Name="accepter_id" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="accepter_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="comment$donor_comment_fk">
+          <End Role="donor" Type="Self.donor" Multiplicity="0..1" />
+          <End Role="comment" Type="Self.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="donor">
+              <PropertyRef Name="donor_id" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="donor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="comment$post_id_fk">
+          <End Role="post" Type="Self.post" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="comment" Type="Self.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="post">
+              <PropertyRef Name="post_id" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="post_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="docupload$accepter_doc_fk">
+          <End Role="accepter" Type="Self.accepter" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="docupload" Type="Self.docupload" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accepter">
+              <PropertyRef Name="accepter_id" />
+            </Principal>
+            <Dependent Role="docupload">
+              <PropertyRef Name="accepter_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="docupload$donor_doc_fk">
+          <End Role="donor" Type="Self.donor" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="docupload" Type="Self.docupload" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="donor">
+              <PropertyRef Name="donor_id" />
+            </Principal>
+            <Dependent Role="docupload">
+              <PropertyRef Name="donor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="donation$accepter_id_fk">
+          <End Role="accepter" Type="Self.accepter" Multiplicity="0..1" />
+          <End Role="donation" Type="Self.donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accepter">
+              <PropertyRef Name="accepter_id" />
+            </Principal>
+            <Dependent Role="donation">
+              <PropertyRef Name="accepter_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="donation$donor_id_fk">
+          <End Role="donor" Type="Self.donor" Multiplicity="0..1" />
+          <End Role="donation" Type="Self.donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="donor">
+              <PropertyRef Name="donor_id" />
+            </Principal>
+            <Dependent Role="donation">
+              <PropertyRef Name="donor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="donation$post_id_mfk">
+          <End Role="post" Type="Self.post" Multiplicity="0..1" />
+          <End Role="donation" Type="Self.donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="post">
+              <PropertyRef Name="post_id" />
+            </Principal>
+            <Dependent Role="donation">
+              <PropertyRef Name="post_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="imageupload$post_image_fk">
+          <End Role="post" Type="Self.post" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="imageupload" Type="Self.imageupload" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="post">
+              <PropertyRef Name="post_id" />
+            </Principal>
+            <Dependent Role="imageupload">
+              <PropertyRef Name="post_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="post$accepter_post_fk">
+          <End Role="accepter" Type="Self.accepter" Multiplicity="0..1" />
+          <End Role="post" Type="Self.post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accepter">
+              <PropertyRef Name="accepter_id" />
+            </Principal>
+            <Dependent Role="post">
+              <PropertyRef Name="accepter_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="post$donor_post_fk">
+          <End Role="donor" Type="Self.donor" Multiplicity="0..1" />
+          <End Role="post" Type="Self.post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="donor">
+              <PropertyRef Name="donor_id" />
+            </Principal>
+            <Dependent Role="post">
+              <PropertyRef Name="donor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="steptocharityModelStoreContainer">
+          <EntitySet Name="accepter" EntityType="Self.accepter" Schema="steptocharity" store:Type="Tables" />
+          <EntitySet Name="admin" EntityType="Self.admin" Schema="steptocharity" store:Type="Tables" />
+          <EntitySet Name="comment" EntityType="Self.comment" Schema="steptocharity" store:Type="Tables" />
+          <EntitySet Name="docupload" EntityType="Self.docupload" Schema="steptocharity" store:Type="Tables" />
+          <EntitySet Name="donation" EntityType="Self.donation" Schema="steptocharity" store:Type="Tables" />
+          <EntitySet Name="donor" EntityType="Self.donor" Schema="steptocharity" store:Type="Tables" />
+          <EntitySet Name="imageupload" EntityType="Self.imageupload" Schema="steptocharity" store:Type="Tables" />
+          <EntitySet Name="login" EntityType="Self.login" Schema="steptocharity" store:Type="Tables" />
+          <EntitySet Name="notification" EntityType="Self.notification" Schema="steptocharity" store:Type="Tables" />
+          <EntitySet Name="post" EntityType="Self.post" Schema="steptocharity" store:Type="Tables" />
+          <AssociationSet Name="comment$accepter_comment_fk" Association="Self.comment$accepter_comment_fk">
+            <End Role="accepter" EntitySet="accepter" />
+            <End Role="comment" EntitySet="comment" />
+          </AssociationSet>
+          <AssociationSet Name="comment$donor_comment_fk" Association="Self.comment$donor_comment_fk">
+            <End Role="donor" EntitySet="donor" />
+            <End Role="comment" EntitySet="comment" />
+          </AssociationSet>
+          <AssociationSet Name="comment$post_id_fk" Association="Self.comment$post_id_fk">
+            <End Role="post" EntitySet="post" />
+            <End Role="comment" EntitySet="comment" />
+          </AssociationSet>
+          <AssociationSet Name="docupload$accepter_doc_fk" Association="Self.docupload$accepter_doc_fk">
+            <End Role="accepter" EntitySet="accepter" />
+            <End Role="docupload" EntitySet="docupload" />
+          </AssociationSet>
+          <AssociationSet Name="docupload$donor_doc_fk" Association="Self.docupload$donor_doc_fk">
+            <End Role="donor" EntitySet="donor" />
+            <End Role="docupload" EntitySet="docupload" />
+          </AssociationSet>
+          <AssociationSet Name="donation$accepter_id_fk" Association="Self.donation$accepter_id_fk">
+            <End Role="accepter" EntitySet="accepter" />
+            <End Role="donation" EntitySet="donation" />
+          </AssociationSet>
+          <AssociationSet Name="donation$donor_id_fk" Association="Self.donation$donor_id_fk">
+            <End Role="donor" EntitySet="donor" />
+            <End Role="donation" EntitySet="donation" />
+          </AssociationSet>
+          <AssociationSet Name="donation$post_id_mfk" Association="Self.donation$post_id_mfk">
+            <End Role="post" EntitySet="post" />
+            <End Role="donation" EntitySet="donation" />
+          </AssociationSet>
+          <AssociationSet Name="imageupload$post_image_fk" Association="Self.imageupload$post_image_fk">
+            <End Role="post" EntitySet="post" />
+            <End Role="imageupload" EntitySet="imageupload" />
+          </AssociationSet>
+          <AssociationSet Name="post$accepter_post_fk" Association="Self.post$accepter_post_fk">
+            <End Role="accepter" EntitySet="accepter" />
+            <End Role="post" EntitySet="post" />
+          </AssociationSet>
+          <AssociationSet Name="post$donor_post_fk" Association="Self.post$donor_post_fk">
+            <End Role="donor" EntitySet="donor" />
+            <End Role="post" EntitySet="post" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="steptocharityModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="accepter">
+          <Key>
+            <PropertyRef Name="accepter_id" />
+          </Key>
+          <Property Name="accepter_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accepter_name" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="father_name" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="contact_no" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="CNIC" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="country" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="zip_code" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="occupation" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="family_members" Type="Int32" />
+          <Property Name="marital_status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="salary" Type="Int32" />
+          <Property Name="code" Type="Int32" />
+          <Property Name="status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="admin_id" Type="Int32" />
+          <NavigationProperty Name="comments" Relationship="Self.comment_accepter_comment_fk" FromRole="accepter" ToRole="comment" />
+          <NavigationProperty Name="docuploads" Relationship="Self.docupload_accepter_doc_fk" FromRole="accepter" ToRole="docupload" />
+          <NavigationProperty Name="donations" Relationship="Self.donation_accepter_id_fk" FromRole="accepter" ToRole="donation" />
+          <NavigationProperty Name="posts" Relationship="Self.post_accepter_post_fk" FromRole="accepter" ToRole="post" />
+        </EntityType>
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="admin_id" />
+          </Key>
+          <Property Name="admin_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="admin_name" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="contact_no" Type="Int32" />
+          <Property Name="gender" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="CNIC" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="country" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="code" Type="Int32" />
+          <Property Name="status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="comment_id" />
+          </Key>
+          <Property Name="comment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="post_id" Type="Int32" />
+          <Property Name="accepter_id" Type="Int32" />
+          <Property Name="comment_text" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="time" Type="DateTime" Precision="0" />
+          <Property Name="donor_id" Type="Int32" />
+          <NavigationProperty Name="accepter" Relationship="Self.comment_accepter_comment_fk" FromRole="comment" ToRole="accepter" />
+          <NavigationProperty Name="donor" Relationship="Self.comment_donor_comment_fk" FromRole="comment" ToRole="donor" />
+          <NavigationProperty Name="post" Relationship="Self.comment_post_id_fk" FromRole="comment" ToRole="post" />
+        </EntityType>
+        <EntityType Name="docupload">
+          <Key>
+            <PropertyRef Name="doc_id" />
+          </Key>
+          <Property Name="doc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accepter_id" Type="Int32" />
+          <Property Name="donor_id" Type="Int32" />
+          <Property Name="doc_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="accepter" Relationship="Self.docupload_accepter_doc_fk" FromRole="docupload" ToRole="accepter" />
+          <NavigationProperty Name="donor" Relationship="Self.docupload_donor_doc_fk" FromRole="docupload" ToRole="donor" />
+        </EntityType>
+        <EntityType Name="donation">
+          <Key>
+            <PropertyRef Name="donation_id" />
+          </Key>
+          <Property Name="donation_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="donor_id" Type="Int32" />
+          <Property Name="accepter_id" Type="Int32" />
+          <Property Name="time" Type="DateTime" Precision="0" />
+          <Property Name="donation_type" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="post_id" Type="Int32" />
+          <Property Name="amount" Type="Int32" />
+          <NavigationProperty Name="accepter" Relationship="Self.donation_accepter_id_fk" FromRole="donation" ToRole="accepter" />
+          <NavigationProperty Name="donor" Relationship="Self.donation_donor_id_fk" FromRole="donation" ToRole="donor" />
+          <NavigationProperty Name="post" Relationship="Self.donation_post_id_mfk" FromRole="donation" ToRole="post" />
+        </EntityType>
+        <EntityType Name="donor">
+          <Key>
+            <PropertyRef Name="donor_id" />
+          </Key>
+          <Property Name="donor_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="donor_name" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="contact_no" Type="Int32" />
+          <Property Name="CNIC" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="country" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="zip_code" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="occupation" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="code" Type="Int32" />
+          <Property Name="status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="admin_id" Type="Int32" />
+          <NavigationProperty Name="comments" Relationship="Self.comment_donor_comment_fk" FromRole="donor" ToRole="comment" />
+          <NavigationProperty Name="docuploads" Relationship="Self.docupload_donor_doc_fk" FromRole="donor" ToRole="docupload" />
+          <NavigationProperty Name="donations" Relationship="Self.donation_donor_id_fk" FromRole="donor" ToRole="donation" />
+          <NavigationProperty Name="posts" Relationship="Self.post_donor_post_fk" FromRole="donor" ToRole="post" />
+        </EntityType>
+        <EntityType Name="imageupload">
+          <Key>
+            <PropertyRef Name="image_id" />
+          </Key>
+          <Property Name="image_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="image_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="post_id" Type="Int32" />
+          <Property Name="path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="post" Relationship="Self.imageupload_post_image_fk" FromRole="imageupload" ToRole="post" />
+        </EntityType>
+        <EntityType Name="login">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="type" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="notification">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="type" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="admin_id" Type="Int32" />
+          <Property Name="accepter_id" Type="Int32" />
+          <Property Name="donor_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="post">
+          <Key>
+            <PropertyRef Name="post_id" />
+          </Key>
+          <Property Name="post_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="category" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="target_amount" Type="Int32" />
+          <Property Name="received_amount" Type="Int32" />
+          <Property Name="time" Type="DateTime" Precision="0" />
+          <Property Name="shares" Type="Int32" />
+          <Property Name="urgent" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="accepter_id" Type="Int32" />
+          <Property Name="donor_id" Type="Int32" />
+          <NavigationProperty Name="accepter" Relationship="Self.post_accepter_post_fk" FromRole="post" ToRole="accepter" />
+          <NavigationProperty Name="comments" Relationship="Self.comment_post_id_fk" FromRole="post" ToRole="comment" />
+          <NavigationProperty Name="donations" Relationship="Self.donation_post_id_mfk" FromRole="post" ToRole="donation" />
+          <NavigationProperty Name="donor" Relationship="Self.post_donor_post_fk" FromRole="post" ToRole="donor" />
+          <NavigationProperty Name="imageuploads" Relationship="Self.imageupload_post_image_fk" FromRole="post" ToRole="imageupload" />
+        </EntityType>
+        <Association Name="comment_accepter_comment_fk">
+          <End Role="accepter" Type="Self.accepter" Multiplicity="0..1" />
+          <End Role="comment" Type="Self.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accepter">
+              <PropertyRef Name="accepter_id" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="accepter_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="docupload_accepter_doc_fk">
+          <End Role="accepter" Type="Self.accepter" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="docupload" Type="Self.docupload" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accepter">
+              <PropertyRef Name="accepter_id" />
+            </Principal>
+            <Dependent Role="docupload">
+              <PropertyRef Name="accepter_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="donation_accepter_id_fk">
+          <End Role="accepter" Type="Self.accepter" Multiplicity="0..1" />
+          <End Role="donation" Type="Self.donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accepter">
+              <PropertyRef Name="accepter_id" />
+            </Principal>
+            <Dependent Role="donation">
+              <PropertyRef Name="accepter_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="post_accepter_post_fk">
+          <End Role="accepter" Type="Self.accepter" Multiplicity="0..1" />
+          <End Role="post" Type="Self.post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accepter">
+              <PropertyRef Name="accepter_id" />
+            </Principal>
+            <Dependent Role="post">
+              <PropertyRef Name="accepter_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="comment_donor_comment_fk">
+          <End Role="donor" Type="Self.donor" Multiplicity="0..1" />
+          <End Role="comment" Type="Self.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="donor">
+              <PropertyRef Name="donor_id" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="donor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="comment_post_id_fk">
+          <End Role="post" Type="Self.post" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="comment" Type="Self.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="post">
+              <PropertyRef Name="post_id" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="post_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="docupload_donor_doc_fk">
+          <End Role="donor" Type="Self.donor" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="docupload" Type="Self.docupload" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="donor">
+              <PropertyRef Name="donor_id" />
+            </Principal>
+            <Dependent Role="docupload">
+              <PropertyRef Name="donor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="donation_donor_id_fk">
+          <End Role="donor" Type="Self.donor" Multiplicity="0..1" />
+          <End Role="donation" Type="Self.donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="donor">
+              <PropertyRef Name="donor_id" />
+            </Principal>
+            <Dependent Role="donation">
+              <PropertyRef Name="donor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="donation_post_id_mfk">
+          <End Role="post" Type="Self.post" Multiplicity="0..1" />
+          <End Role="donation" Type="Self.donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="post">
+              <PropertyRef Name="post_id" />
+            </Principal>
+            <Dependent Role="donation">
+              <PropertyRef Name="post_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="post_donor_post_fk">
+          <End Role="donor" Type="Self.donor" Multiplicity="0..1" />
+          <End Role="post" Type="Self.post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="donor">
+              <PropertyRef Name="donor_id" />
+            </Principal>
+            <Dependent Role="post">
+              <PropertyRef Name="donor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="imageupload_post_image_fk">
+          <End Role="post" Type="Self.post" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="imageupload" Type="Self.imageupload" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="post">
+              <PropertyRef Name="post_id" />
+            </Principal>
+            <Dependent Role="imageupload">
+              <PropertyRef Name="post_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="steptocharityEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="accepters" EntityType="Self.accepter" />
+          <EntitySet Name="admins" EntityType="Self.admin" />
+          <EntitySet Name="comments" EntityType="Self.comment" />
+          <EntitySet Name="docuploads" EntityType="Self.docupload" />
+          <EntitySet Name="donations" EntityType="Self.donation" />
+          <EntitySet Name="donors" EntityType="Self.donor" />
+          <EntitySet Name="imageuploads" EntityType="Self.imageupload" />
+          <EntitySet Name="logins" EntityType="Self.login" />
+          <EntitySet Name="notifications" EntityType="Self.notification" />
+          <EntitySet Name="posts" EntityType="Self.post" />
+          <AssociationSet Name="comment_accepter_comment_fk" Association="Self.comment_accepter_comment_fk">
+            <End Role="accepter" EntitySet="accepters" />
+            <End Role="comment" EntitySet="comments" />
+          </AssociationSet>
+          <AssociationSet Name="docupload_accepter_doc_fk" Association="Self.docupload_accepter_doc_fk">
+            <End Role="accepter" EntitySet="accepters" />
+            <End Role="docupload" EntitySet="docuploads" />
+          </AssociationSet>
+          <AssociationSet Name="donation_accepter_id_fk" Association="Self.donation_accepter_id_fk">
+            <End Role="accepter" EntitySet="accepters" />
+            <End Role="donation" EntitySet="donations" />
+          </AssociationSet>
+          <AssociationSet Name="post_accepter_post_fk" Association="Self.post_accepter_post_fk">
+            <End Role="accepter" EntitySet="accepters" />
+            <End Role="post" EntitySet="posts" />
+          </AssociationSet>
+          <AssociationSet Name="comment_donor_comment_fk" Association="Self.comment_donor_comment_fk">
+            <End Role="donor" EntitySet="donors" />
+            <End Role="comment" EntitySet="comments" />
+          </AssociationSet>
+          <AssociationSet Name="comment_post_id_fk" Association="Self.comment_post_id_fk">
+            <End Role="post" EntitySet="posts" />
+            <End Role="comment" EntitySet="comments" />
+          </AssociationSet>
+          <AssociationSet Name="docupload_donor_doc_fk" Association="Self.docupload_donor_doc_fk">
+            <End Role="donor" EntitySet="donors" />
+            <End Role="docupload" EntitySet="docuploads" />
+          </AssociationSet>
+          <AssociationSet Name="donation_donor_id_fk" Association="Self.donation_donor_id_fk">
+            <End Role="donor" EntitySet="donors" />
+            <End Role="donation" EntitySet="donations" />
+          </AssociationSet>
+          <AssociationSet Name="donation_post_id_mfk" Association="Self.donation_post_id_mfk">
+            <End Role="post" EntitySet="posts" />
+            <End Role="donation" EntitySet="donations" />
+          </AssociationSet>
+          <AssociationSet Name="post_donor_post_fk" Association="Self.post_donor_post_fk">
+            <End Role="donor" EntitySet="donors" />
+            <End Role="post" EntitySet="posts" />
+          </AssociationSet>
+          <AssociationSet Name="imageupload_post_image_fk" Association="Self.imageupload_post_image_fk">
+            <End Role="post" EntitySet="posts" />
+            <End Role="imageupload" EntitySet="imageuploads" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="steptocharityModelStoreContainer" CdmEntityContainer="steptocharityEntities">
+          <EntitySetMapping Name="accepters">
+            <EntityTypeMapping TypeName="steptocharityModel.accepter">
+              <MappingFragment StoreEntitySet="accepter">
+                <ScalarProperty Name="accepter_id" ColumnName="accepter_id" />
+                <ScalarProperty Name="accepter_name" ColumnName="accepter_name" />
+                <ScalarProperty Name="father_name" ColumnName="father_name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="contact_no" ColumnName="contact_no" />
+                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="zip_code" ColumnName="zip_code" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="occupation" ColumnName="occupation" />
+                <ScalarProperty Name="family_members" ColumnName="family_members" />
+                <ScalarProperty Name="marital_status" ColumnName="marital_status" />
+                <ScalarProperty Name="salary" ColumnName="salary" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="admins">
+            <EntityTypeMapping TypeName="steptocharityModel.admin">
+              <MappingFragment StoreEntitySet="admin">
+                <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+                <ScalarProperty Name="admin_name" ColumnName="admin_name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="contact_no" ColumnName="contact_no" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="comments">
+            <EntityTypeMapping TypeName="steptocharityModel.comment">
+              <MappingFragment StoreEntitySet="comment">
+                <ScalarProperty Name="comment_id" ColumnName="comment_id" />
+                <ScalarProperty Name="post_id" ColumnName="post_id" />
+                <ScalarProperty Name="accepter_id" ColumnName="accepter_id" />
+                <ScalarProperty Name="comment_text" ColumnName="comment_text" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="donor_id" ColumnName="donor_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="docuploads">
+            <EntityTypeMapping TypeName="steptocharityModel.docupload">
+              <MappingFragment StoreEntitySet="docupload">
+                <ScalarProperty Name="doc_id" ColumnName="doc_id" />
+                <ScalarProperty Name="accepter_id" ColumnName="accepter_id" />
+                <ScalarProperty Name="donor_id" ColumnName="donor_id" />
+                <ScalarProperty Name="doc_name" ColumnName="doc_name" />
+                <ScalarProperty Name="path" ColumnName="path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="donations">
+            <EntityTypeMapping TypeName="steptocharityModel.donation">
+              <MappingFragment StoreEntitySet="donation">
+                <ScalarProperty Name="donation_id" ColumnName="donation_id" />
+                <ScalarProperty Name="donor_id" ColumnName="donor_id" />
+                <ScalarProperty Name="accepter_id" ColumnName="accepter_id" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="donation_type" ColumnName="donation_type" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="post_id" ColumnName="post_id" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="donors">
+            <EntityTypeMapping TypeName="steptocharityModel.donor">
+              <MappingFragment StoreEntitySet="donor">
+                <ScalarProperty Name="donor_id" ColumnName="donor_id" />
+                <ScalarProperty Name="donor_name" ColumnName="donor_name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="contact_no" ColumnName="contact_no" />
+                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="zip_code" ColumnName="zip_code" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="occupation" ColumnName="occupation" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="imageuploads">
+            <EntityTypeMapping TypeName="steptocharityModel.imageupload">
+              <MappingFragment StoreEntitySet="imageupload">
+                <ScalarProperty Name="image_id" ColumnName="image_id" />
+                <ScalarProperty Name="image_name" ColumnName="image_name" />
+                <ScalarProperty Name="post_id" ColumnName="post_id" />
+                <ScalarProperty Name="path" ColumnName="path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="logins">
+            <EntityTypeMapping TypeName="steptocharityModel.login">
+              <MappingFragment StoreEntitySet="login">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="notifications">
+            <EntityTypeMapping TypeName="steptocharityModel.notification">
+              <MappingFragment StoreEntitySet="notification">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+                <ScalarProperty Name="accepter_id" ColumnName="accepter_id" />
+                <ScalarProperty Name="donor_id" ColumnName="donor_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="posts">
+            <EntityTypeMapping TypeName="steptocharityModel.post">
+              <MappingFragment StoreEntitySet="post">
+                <ScalarProperty Name="post_id" ColumnName="post_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="target_amount" ColumnName="target_amount" />
+                <ScalarProperty Name="received_amount" ColumnName="received_amount" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="shares" ColumnName="shares" />
+                <ScalarProperty Name="urgent" ColumnName="urgent" />
+                <ScalarProperty Name="accepter_id" ColumnName="accepter_id" />
+                <ScalarProperty Name="donor_id" ColumnName="donor_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

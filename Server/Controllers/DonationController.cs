@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace Server.Controllers
 {
-    public class AdminController : ApiController
+    public class DonationController : ApiController
     {
         private steptocharityEntities context = new steptocharityEntities();
 
@@ -17,14 +17,14 @@ namespace Server.Controllers
         public IHttpActionResult Get(bool related = false)
         {
 
-            List<admin> query = context.admins.ToList();
+            List<donation> query = context.donations.ToList();
             return Ok(new { results = query });
         }
 
-        public IHttpActionResult post([FromBody] admin adata)
+        public IHttpActionResult post([FromBody] donation adata)
         {
-            admin p = adata;
-            context.admins.Add(p);
+            donation p = adata;
+            context.donations.Add(p);
             context.SaveChanges();
 
             return Ok(new { results = adata });
@@ -33,7 +33,7 @@ namespace Server.Controllers
 
         public IHttpActionResult Get(int id)
         {
-            admin a = context.admins.Single(admin => admin.admin_id == id);
+            donation a = context.donations.Single(donation => donation.donation_id== id);
 
             return Ok(new { results = a });
 
@@ -75,34 +75,8 @@ namespace Server.Controllers
         //}
 
 
-        public IHttpActionResult Put(int id, [FromBody] admin s)
-        {
-            admin a = context.admins.Single(admin => admin.admin_id == s.admin_id);
-            a.admin_name = s.admin_name;
-            a.email = s.email;
-            a.password = s.password;
-            a.contact_no = s.contact_no;
-            a.CNIC = s.CNIC;
-            a.DOB = s.DOB;
-            a.country = s.country;
-            a.city = s.city;
-            a.state = s.state;
-            a.address = s.address;
-            a.gender = s.gender;
-          
+        
 
-            //context.Update(s);
-            context.SaveChanges();
-            return Ok();
-
-        }
-
-        public void delete(int id)
-        {
-            var result = context.admins.Single(admin => admin.admin_id == id);
-            context.admins.Remove(result);
-            context.SaveChanges();
-        }
-
+      
     }
 }
