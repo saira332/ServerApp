@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
+using System.Security.Policy;
 using System.Web.Http;
 
 namespace Server.Controllers
@@ -26,7 +28,37 @@ namespace Server.Controllers
         {
             accepter p = adata;
             context.accepters.Add(p);
+
+            notification n = new notification();
+            n.accepter_id = p.accepter_id;
+            n.title = "Need Verification for Accepter";
+            n.status = "0";
+            context.notifications.Add(n);
+
             context.SaveChanges();
+
+            accepter a = context.accepters.Single(accepter => accepter.email == adata.email);
+            n.accepter_id = a.accepter_id;
+            context.SaveChanges();
+
+
+            //EmailClass ec = new EmailClass();
+            //ec.subject = "Email Verification";
+            //ec.body = p.code.ToString();
+            //ec.to = p.email;
+            //HttpClient hc = new HttpClient();
+            //hc.BaseAddress = new Uri("https://localhost:44371/api/Email");
+
+            //var consumewebapi = hc.PostAsJsonAsync<EmailClass>("email", ec);
+            //consumewebapi.Wait();
+            //var sendmail = consumewebapi.Result;
+            //if (sendmail.IsSuccessStatusCode)
+            //{
+
+            //    Random random = new Random();
+            //    p.code = random.Next(10000);
+            //}
+
 
             return Ok(new { results = adata });
 
@@ -42,14 +74,17 @@ namespace Server.Controllers
 
 
 
-        //public Dictionary<string, string> post()
+        //public IHttpActionResult Post(int id)
         //{
         //    try
         //    {
-        //        Docupload d = new Docupload();
+        //        docupload d = new docupload();
         //        var file = Request.Form.Files[0];
         //        var folderName = Path.Combine("Resources", "Images");
         //        var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+        //        //string realpath = Server.MapPath("/images") + "//" + file.FileName;
+        //        //file.SaveAs(realpath);
+        //        //c.productData.path = file.FileName;
 
         //        if (file.Length > 0)
         //        {
@@ -78,7 +113,7 @@ namespace Server.Controllers
 
         public IHttpActionResult Put(int id, [FromBody] accepter s)
         {
-            accepter a = context.accepters.Single(accepter => accepter.accepter_id == s.accepter_id);
+            accepter a = context.accepters.Single(accepter => accepter.accepter_id == id);
             a.accepter_name = s.accepter_name;
             a.father_name = s.father_name;
             a.email = s.email;
@@ -110,6 +145,6 @@ namespace Server.Controllers
             context.accepters.Remove(result);
             context.SaveChanges();
         }
-
+        
     }
 }

@@ -12,11 +12,10 @@ namespace Server.Controllers
     {
         private steptocharityEntities context = new steptocharityEntities();
 
-
+        public int Message { get; set; }
 
         public IHttpActionResult Get(bool related = false)
         {
-
             List<login> query = context.logins.ToList();
             return Ok(new { results = query });
         }
@@ -26,75 +25,54 @@ namespace Server.Controllers
             login p = adata;
             context.logins.Add(p);
             context.SaveChanges();
-
-            return Ok(new { results = adata });
-
-        }
-
-        //public IHttpActionResult Get(int id)
-        //{
-        //    login a = context.logins.Single(login => login.id == id);
-
-        //    return Ok(new { results = a });
-
-        //}
-
-        public IHttpActionResult Get(int id)
-        {
-            login data = context.logins.Single(login => login.id == id);
-            if (data.type == "accepter")
+            
+            if (p.type == "accepter")
             {
                 var res = from m in context.accepters
-                          where m.email == data.email
+                          where m.email == p.email
                           select m;
                 foreach (var m in res)
                 {
-                    if (m.email == data.email && m.password == data.password)
+                    if (m.email == p.email && m.password == p.password)
                     {
-                        id = m.accepter_id;
+                        Message = m.accepter_id;
                     }
                 }
-                accepter result = context.accepters.Single(accepter => accepter.accepter_id == id);
-                return Ok(new { results = result });
+                accepter result = context.accepters.Single(accepter => accepter.email == p.email);
             }
-            else if (data.type == "donor")
+            else if (p.type == "donor")
             {
                 var res = from m in context.donors
-                          where m.email == data.email
+                          where m.email == p.email
                           select m;
                 foreach (var m in res)
                 {
-                    if (m.email == data.email && m.password == data.password)
+                    if (m.email == p.email && m.password == p.password)
                     {
-                        id = m.donor_id;
+                        Message = m.donor_id;
                     }
                 }
-                donor result = context.donors.Single(donor => donor.donor_id == id);
-                return Ok(new { results = result });
+                donor result = context.donors.Single(donor => donor.email == p.email);
             }
-            else if (data.type == "admin")
+            else if (p.type == "admin")
             {
                 var res = from m in context.admins
-                          where m.email == data.email
+                          where m.email == p.email
                           select m;
                 foreach (var m in res)
                 {
-                    if (m.email == data.email && m.password == data.password)
+                    if (m.email == p.email && m.password == p.password)
                     {
-                        id = m.admin_id;
+                        Message = m.admin_id;
                     }
                 }
-                admin result = context.admins.Single(admin => admin.admin_id == id);
-                return Ok(new { results = result });
+                admin result = context.admins.Single(admin => admin.email == p.email );
             }
-            return Ok();
-            
+
+            return Ok(Message);
+
         }
-
-
-
-
-
+        
 
 
     }

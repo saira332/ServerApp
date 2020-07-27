@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
 using System.Web.Http;
 
 namespace Server.Controllers
@@ -21,13 +22,24 @@ namespace Server.Controllers
             return Ok(new { results = query });
         }
 
-        public IHttpActionResult post([FromBody] donor adata)
+        public IHttpActionResult Post([FromBody] donor adata)
         {
+            
             donor p = adata;
             context.donors.Add(p);
+
+            notification n = new notification();
+            n.donor_id = p.donor_id;
+            n.title = "Need Verification for Donor";
+            n.status = "0";
+            context.notifications.Add(n);
+
+            context.SaveChanges();
+            donor a = context.donors.Single(donor => donor.email == adata.email);
+            n.donor_id = a.donor_id;
             context.SaveChanges();
 
-            return Ok(new { results = adata });
+            return Ok(new { results = a });
 
         }
 
@@ -77,7 +89,7 @@ namespace Server.Controllers
 
         public IHttpActionResult Put(int id, [FromBody] donor s)
         {
-            donor a = context.donors.Single(donor => donor.donor_id == s.donor_id);
+            donor a = context.donors.Single(donor => donor.donor_id == id);
             a.donor_name = s.donor_name;
            
             a.email = s.email;

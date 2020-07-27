@@ -77,7 +77,7 @@ namespace Server.Controllers
 
         public IHttpActionResult Put(int id, [FromBody] admin s)
         {
-            admin a = context.admins.Single(admin => admin.admin_id == s.admin_id);
+            admin a = context.admins.Single(admin => admin.admin_id == id);
             a.admin_name = s.admin_name;
             a.email = s.email;
             a.password = s.password;

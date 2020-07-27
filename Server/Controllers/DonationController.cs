@@ -41,38 +41,7 @@ namespace Server.Controllers
 
 
 
-        //public Dictionary<string, string> post()
-        //{
-        //    try
-        //    {
-        //        Docupload d = new Docupload();
-        //        var file = Request.Form.Files[0];
-        //        var folderName = Path.Combine("Resources", "Images");
-        //        var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-
-        //        if (file.Length > 0)
-        //        {
-        //            var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-        //            var fullPath = Path.Combine(pathToSave, fileName);
-        //            var dbPath = Path.Combine(folderName, fileName);
-        //            using (var stream = new FileStream(fullPath, FileMode.Create))
-        //            {
-        //                file.CopyTo(stream);
-        //            }
-        //            d.DocName = fileName;
-        //            d.Path = dbPath;
-        //            //d.AccepterId = Convert.ToInt32(Message);
-        //            context.Add(d);
-        //            context.SaveChanges();
-
-        //            return Ok();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, $"Internal server error: {ex}");
-        //    }
-        //}
+       
 
 
         

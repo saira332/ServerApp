@@ -27,13 +27,14 @@ namespace Server.Controllers
             context.posts.Add(p);
             context.SaveChanges();
 
+
             return Ok(new { results = adata });
 
         }
 
         public IHttpActionResult Get(int id)
         {
-            post a = context.posts.Single(post => post.post_id == id);
+            post a = context.posts.Single(post => post.post_id== id);
 
             return Ok(new { results = a });
 
@@ -77,7 +78,7 @@ namespace Server.Controllers
 
         public IHttpActionResult Put(int id, [FromBody] post s)
         {
-            post a = context.posts.Single(post => post.post_id == s.post_id);
+            post a = context.posts.Single(post => post.post_id == id);
             a.title = s.title;
             a.category = s.category;
             a.description = s.description;
